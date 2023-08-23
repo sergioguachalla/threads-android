@@ -40,7 +40,7 @@
         android:layout_toRightOf="@+id/etEnd"
         android:layout_marginLeft="20dp"
         android:padding="16dp"
-        android:hint="Delay"
+        android:hint="Delay (ms)"
         android:id="@+id/etDelay"
         android:layout_weight="1"
         android:inputType="number"
@@ -59,4 +59,12 @@
         />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvCounter"
+        android:textSize="100dp"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>
