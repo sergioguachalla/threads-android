@@ -33,12 +33,19 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     Thread.sleep(delay);
                     synchronized (this) {
                         result++;
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                textViewResult.setText(String.valueOf(abs(result)));
-                            }
-                        });
+                        if (result <= end) {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textViewResult.setText(String.valueOf(abs(result)));
+                                }
+                            });
+                        }
+
+                        else {
+                            isRunning = false;
+                        }
                     }
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
@@ -76,16 +83,17 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             end = Integer.parseInt(editTextEnd.getText().toString());
                             delay = Integer.parseInt(editTextDelay.getText().toString());
                             result = start;
+
                             Toast.makeText(MainActivity.this, "Increase", Toast.LENGTH_SHORT).show();
 
 
                         }
                         if(item.getItemId() == R.id.action_decrease){
                             isRunning = true;
-                            start = Integer.parseInt(editTextStart.getText().toString());
-                            end = Integer.parseInt(editTextEnd.getText().toString());
+                            end = Integer.parseInt(editTextStart.getText().toString());
+                            start = Integer.parseInt(editTextEnd.getText().toString());
                             delay = Integer.parseInt(editTextDelay.getText().toString());
-                            result = end * -1;
+                            result = start * -1;
                             Toast.makeText(MainActivity.this, "Decrease", Toast.LENGTH_SHORT).show();
 
                         }
